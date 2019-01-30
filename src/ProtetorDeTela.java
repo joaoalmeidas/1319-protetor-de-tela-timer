@@ -1,12 +1,23 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.security.SecureRandom;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class ProtetorDeTela extends JPanel{
+public class ProtetorDeTela extends JPanel implements ActionListener{
 	
-	SecureRandom aleatorio = new SecureRandom();
+	private final SecureRandom aleatorio = new SecureRandom();
+	private Timer tempo ;
+	
+	public ProtetorDeTela(){
+		
+		tempo = new Timer(1000, this);
+		tempo.start();
+		
+	}
 	
 	@Override
 	public void paintComponent(Graphics g){
@@ -19,6 +30,12 @@ public class ProtetorDeTela extends JPanel{
 			g.drawLine(aleatorio.nextInt(getWidth()), aleatorio.nextInt(getHeight()), aleatorio.nextInt(getWidth()), aleatorio.nextInt(getHeight()));
 			
 		}
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 		
 		repaint();
 		
